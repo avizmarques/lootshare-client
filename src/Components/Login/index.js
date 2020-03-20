@@ -25,14 +25,14 @@ class Login extends Component {
   };
 
   componentDidUpdate = () => {
-    const { id, token } = this.props.userSession;
+    const { id, token } = this.props.user;
     if (token) {
       this.props.history.push(`/user/${id}/dashboard`);
     }
   };
 
   render = () => {
-    const { userCreated, token } = this.props.userSession;
+    const { userCreated, token } = this.props.user;
     return (
       <div>
         {userCreated && !token && <p>Signup successful, please login.</p>}

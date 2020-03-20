@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { signup } from "../../store/user/session/actions";
+import { signup } from "../../store/user/actions";
 import SignupForm from "./SignupForm";
 
-class SignupContainer extends Component {
+class Signup extends Component {
   state = {
     username: "",
     email: "",
@@ -49,4 +49,4 @@ const mapStateToProps = state => ({ user: state.user });
 
 const mapDispatchToProps = { signup };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignupContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);
