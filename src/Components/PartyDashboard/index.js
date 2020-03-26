@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { fetchParty } from "../../store/party/actions";
 import Chest from "../Chest";
 import PartyBalances from "./PartyBalances";
-import LootList from "./LootList";
+import TransactionList from "./TransactionList";
 
 export class PartyDashboard extends Component {
   componentDidMount = () => {
@@ -27,7 +27,14 @@ export class PartyDashboard extends Component {
             <PartyBalances character={char} />
           ))}
         </div>
-        <LootList loot={this.props.party.recentLoot} />
+        <div>
+          <h2>Recent Loot</h2>
+          <TransactionList transactions={this.props.party.recentLoot} />
+        </div>
+        <div>
+          <h2>Recent Expenses</h2>
+          <TransactionList transactions={this.props.party.recentExpenses} />
+        </div>
       </div>
     );
   };
