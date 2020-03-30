@@ -25,7 +25,7 @@ export class PartyDashboard extends Component {
       return "Loading...";
     }
 
-    const { name, chest, characters } = this.props.party;
+    const { name, chest, chestId, characters } = this.props.party;
 
     return (
       <div>
@@ -37,7 +37,7 @@ export class PartyDashboard extends Component {
             Add Expense
           </button>
           {this.state.showForm && (
-            <TransactionForm type={this.state.typeForm} />
+            <TransactionForm type={this.state.typeForm} chestId={chestId} />
           )}
         </div>
         <div>
