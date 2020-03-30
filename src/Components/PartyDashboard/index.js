@@ -4,10 +4,20 @@ import { fetchParty } from "../../store/party/actions";
 import Chest from "../Chest";
 import PartyBalances from "./PartyBalances";
 import TransactionList from "./TransactionList";
+import TransactionForm from "./TransactionForm";
 
 export class PartyDashboard extends Component {
+  state = {
+    showForm: false,
+    typeForm: ""
+  };
+
   componentDidMount = () => {
     this.props.fetchParty(this.props.match.params.id);
+  };
+
+  toggleForm = type => {
+    this.setState({ showForm: !this.state.showForm, typeForm: type });
   };
 
   render = () => {
@@ -19,8 +29,17 @@ export class PartyDashboard extends Component {
 
     return (
       <div>
-        <h1>{name}</h1>
-        <Chest chest={chest} />
+        <div>
+          <h1>{name}</h1>
+          <Chest chest={chest} />
+          <button onClick={() => this.toggleForm("loot")}>Add Loot</button>
+          <button onClick={() => this.toggleForm("expense")}>
+            Add Expense
+          </button>
+          {this.state.showForm && (
+            <TransactionForm type={this.state.typeForm} />
+          )}
+        </div>
         <div>
           <h2>Party Balances</h2>
           {characters.map(char => (
