@@ -1,4 +1,8 @@
-import { FETCH_PARTIES_SUCCESS, FETCH_PARTY_SUCCESS } from "./actions";
+import {
+  FETCH_PARTIES_SUCCESS,
+  FETCH_PARTY_SUCCESS,
+  TRANSACTION_SUCCESS
+} from "./actions";
 
 const initialState = {
   allParties: [],
@@ -11,6 +15,11 @@ export default function(state = initialState, action) {
       return { ...state, allParties: action.payload };
     case FETCH_PARTY_SUCCESS:
       return { ...state, currentParty: action.payload };
+    case TRANSACTION_SUCCESS:
+      return {
+        ...state,
+        currentParty: { ...state.currentParty, chest: action.payload.chest }
+      };
     default:
       return state;
   }
