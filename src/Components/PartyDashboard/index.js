@@ -37,7 +37,7 @@ export class PartyDashboard extends Component {
             Add Expense
           </button>
           {this.state.showForm && (
-            <TransactionForm type={this.state.typeForm} chestId={chestId} />
+            <TransactionForm type={this.state.typeForm} />
           )}
         </div>
         <div>
