@@ -1,4 +1,8 @@
-import { LOGIN_SUCCESS, SIGNUP_SUCCESS } from "./actions";
+import {
+  LOGIN_SUCCESS,
+  SIGNUP_SUCCESS,
+  FETCH_USER_DASHBOARD_SUCCESS
+} from "./actions";
 
 const initialState = {};
 
@@ -13,6 +17,12 @@ export default function(state = initialState, action) {
       };
     case SIGNUP_SUCCESS:
       return { ...state, userCreated: true };
+    case FETCH_USER_DASHBOARD_SUCCESS:
+      return {
+        ...state,
+        parties: action.payload.parties,
+        characters: action.payload.characters
+      };
     default:
       return state;
   }
