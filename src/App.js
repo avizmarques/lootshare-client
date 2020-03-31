@@ -4,6 +4,7 @@ import Login from "./Components/Login";
 import Signup from "./Components/Signup";
 import UserDashboard from "./Components/UserDashboard";
 import PartyDashboard from "./Components/PartyDashboard";
+import CharacterDashboard from "./Components/CharacterDashboard";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Route exact path="/signup" component={Signup} />
       <Route exact path="/user/:id/dashboard" component={UserDashboard} />
       <Route exact path="/party/:id" component={PartyDashboard} />
+      <Route exact path="/character/:id" component={CharacterDashboard} />
     </div>
   );
 }
