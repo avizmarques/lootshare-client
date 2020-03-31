@@ -5,10 +5,12 @@ import Signup from "./Components/Signup";
 import UserDashboard from "./Components/UserDashboard";
 import PartyDashboard from "./Components/PartyDashboard";
 import CharacterDashboard from "./Components/CharacterDashboard";
+import Navbar from "./Components/Navbar";
 
 function App() {
   return (
     <div className="App">
+      <Navbar />
       <Route exact path="/" component={Login} />
       <Route exact path="/signup" component={Signup} />
       <Route exact path="/user/:id/dashboard" component={UserDashboard} />
