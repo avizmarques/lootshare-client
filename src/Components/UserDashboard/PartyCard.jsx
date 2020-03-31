@@ -1,20 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Chest from "../Chest";
 
 export default function PartyCard(props) {
-  const { pp, gp, ep, sp, cp } = props.party.chest;
   return (
     <div>
-      <Link to={`/party/${props.party.id}`}>
-        <div>{props.party.name}</div>
-        <div>
-          <div>{pp}</div>
-          <div>{gp}</div>
-          <div>{ep}</div>
-          <div>{sp}</div>
-          <div>{cp}</div>
-        </div>
-      </Link>
+      <div>{props.party.name}</div>
+      <Chest chest={props.party.chest} />
+      <Link to={`/party/${props.party.id}`}>Go to dashboard</Link>
     </div>
   );
 }
