@@ -1,0 +1,8 @@
+.chest {
+  display: flex;
+  flex-direction: row;
+}
+
+.chest > div {
+  margin: 10px;
+}
