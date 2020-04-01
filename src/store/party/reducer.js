@@ -1,4 +1,4 @@
-import { FETCH_PARTY_SUCCESS, TRANSACTION_SUCCESS } from "./actions";
+import { FETCH_PARTY_SUCCESS, PARTY_TRANSACTION_SUCCESS } from "./actions";
 
 const initialState = {
   allParties: [],
@@ -9,7 +9,7 @@ export default function(state = initialState, action) {
   switch (action.type) {
     case FETCH_PARTY_SUCCESS:
       return { ...state, currentParty: action.payload };
-    case TRANSACTION_SUCCESS:
+    case PARTY_TRANSACTION_SUCCESS:
       return {
         ...state,
         currentParty: { ...state.currentParty, chest: action.payload.chest }

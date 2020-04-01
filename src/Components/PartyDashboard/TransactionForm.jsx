@@ -110,9 +110,7 @@ export class TransactionForm extends Component {
   };
 }
 
-const mapStateToProps = state => ({
-  chestId: state.party.currentParty.chestId
-});
+const mapStateToProps = state => ({});
 
 const mapDispatchToProps = { makeTransaction };
 

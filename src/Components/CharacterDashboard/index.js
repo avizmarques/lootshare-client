@@ -2,10 +2,21 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchCharacter } from "../../store/character/actions";
 import Chest from "../Chest";
+import TransactionForm from "../PartyDashboard/TransactionForm";
 
 export class CharacterDashboard extends Component {
+  state = {
+    showForm: false,
+    typeForm: "",
+    typeChest: "character"
+  };
+
   componentDidMount = () => {
     this.props.fetchCharacter(this.props.match.params.id);
+  };
+
+  toggleForm = type => {
+    this.setState({ showForm: !this.state.showForm, typeForm: type });
   };
 
   render() {
@@ -20,6 +31,14 @@ export class CharacterDashboard extends Component {
         <h2>{name}</h2>
         <div>{party}</div>
         <Chest chest={chest} />
+        <button onClick={() => this.toggleForm("expense")}>Add Expense</button>
+        <button onClick={() => this.toggleForm("loot")}>Add Loot</button>
+        {this.state.showForm && (
+          <TransactionForm
+            type={this.state.typeForm}
+            chestId={this.props.character.chestId}
+          />
+        )}
       </div>
     );
   }
