@@ -7,7 +7,8 @@ import TransactionForm from "../PartyDashboard/TransactionForm";
 export class CharacterDashboard extends Component {
   state = {
     showForm: false,
-    typeForm: ""
+    typeForm: "",
+    typeChest: "character"
   };
 
   componentDidMount = () => {
@@ -32,7 +33,12 @@ export class CharacterDashboard extends Component {
         <Chest chest={chest} />
         <button onClick={() => this.toggleForm("expense")}>Add Expense</button>
         <button onClick={() => this.toggleForm("loot")}>Add Loot</button>
-        {this.state.showForm && <TransactionForm type={this.state.typeForm} />}
+        {this.state.showForm && (
+          <TransactionForm
+            type={this.state.typeForm}
+            chestId={this.props.character.chestId}
+          />
+        )}
       </div>
     );
   }

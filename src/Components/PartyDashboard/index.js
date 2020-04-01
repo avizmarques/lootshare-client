@@ -9,7 +9,8 @@ import TransactionForm from "./TransactionForm";
 export class PartyDashboard extends Component {
   state = {
     showForm: false,
-    typeForm: ""
+    typeForm: "",
+    typeChest: "party"
   };
 
   componentDidMount = () => {
@@ -37,7 +38,10 @@ export class PartyDashboard extends Component {
             Add Expense
           </button>
           {this.state.showForm && (
-            <TransactionForm type={this.state.typeForm} />
+            <TransactionForm
+              type={this.state.typeForm}
+              chestId={this.props.party.chestId}
+            />
           )}
         </div>
         <div>
