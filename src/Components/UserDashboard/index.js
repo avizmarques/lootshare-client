@@ -1,12 +1,41 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchUserDashboard } from "../../store/user/actions";
+import { fetchUserDashboard, createCharacter } from "../../store/user/actions";
 import PartyCard from "./PartyCard";
 import CharacterCard from "./CharacterCard";
+import CreateCharacterForm from "./CreateCharacterForm";
+
+const initialState = {
+  showForm: false,
+  name: "",
+  pp: 0,
+  gp: 0,
+  ep: 0,
+  sp: 0,
+  cp: 0
+};
 
 export class UserDashboard extends Component {
+  state = { ...initialState, userId: parseInt(this.props.match.params.id) };
+
   componentDidMount = () => {
-    this.props.fetchUserDashboard(this.props.match.params.id);
+    this.props.fetchUserDashboard(this.state.userId);
+  };
+
+  toggleForm = () => {
+    this.setState({ showForm: !this.state.showForm });
+  };
+
+  onChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
+  onSubmit = e => {
+    e.preventDefault();
+    this.props.createCharacter(this.state);
+    this.setState({ ...initialState });
   };
 
   render = () => {
@@ -24,6 +53,12 @@ export class UserDashboard extends Component {
         {this.props.characters.map(char => (
           <CharacterCard character={char} />
         ))}
+        <CreateCharacterForm
+          toggleForm={this.toggleForm}
+          onSubmit={this.onSubmit}
+          onChange={this.onChange}
+          values={this.state}
+        />
       </div>
     );
   };
@@ -34,6 +69,6 @@ const mapStateToProps = state => ({
   characters: state.user.characters
 });
 
-const mapDispatchToProps = { fetchUserDashboard };
+const mapDispatchToProps = { fetchUserDashboard, createCharacter };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserDashboard);
