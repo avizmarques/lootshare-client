@@ -1,14 +1,14 @@
 import React from "react";
 
-export default function CreateCharacterForm(props) {
+export default function CreateCharacterOrPartyForm(props) {
   const { name, pp, gp, ep, sp, cp, showForm } = props.values;
   return (
     <div>
-      <button onClick={props.toggleForm}>New character</button>
+      <button onClick={props.toggleForm}>New {props.type}</button>
       {showForm && (
-        <form className="createCharacterForm" onSubmit={props.onSubmit}>
+        <form onSubmit={props.onSubmit}>
           <div>
-            <label>Character name</label>
+            <label>name</label>
             <input
               name="name"
               placeholder="name"
@@ -62,7 +62,7 @@ export default function CreateCharacterForm(props) {
               onChange={e => props.onChange(e)}
             />
           </div>
-          <button type="submit">Create character</button>
+          <button type="submit">Create {props.type}</button>
         </form>
       )}
     </div>
