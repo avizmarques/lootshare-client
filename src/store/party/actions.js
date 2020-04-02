@@ -2,6 +2,7 @@ import axios from "../../axios";
 
 export const FETCH_ALL_PARTIES_SUCCESS = "FETCH_ALL_PARTIES_SUCCESS";
 export const FETCH_PARTY_SUCCESS = "FETCH_PARTY_SUCCESS";
+export const CREATE_PARTY_SUCCESS = "CREATE_PARTY_SUCCESS";
 export const PARTY_TRANSACTION_SUCCESS = "PARTY_TRANSACTION_SUCCESS";
 export const CHARACTER_TRANSACTION_SUCCESS = "CHARACTER_TRANSACTION_SUCCESS";
 
@@ -39,6 +40,23 @@ export const fetchParty = partyId => async (dispatch, getState) => {
   }
 };
 
+const createPartySuccess = party => ({
+  type: CREATE_PARTY_SUCCESS,
+  payload: party
+});
+
+export const createParty = data => async (dispatch, getState) => {
+  try {
+    const token = getState().user.token;
+    const res = await axios.post(`/party`, data, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    dispatch(createPartySuccess(res.data));
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 const partyTransactionSuccess = updatedChest => ({
   type: PARTY_TRANSACTION_SUCCESS,
   payload: updatedChest
@@ -52,7 +70,7 @@ const characterTransactionSuccess = updatedChest => ({
 export const makeTransaction = data => async (dispatch, getState) => {
   try {
     const token = getState().user.token;
-    const res = await axios.post(`chest/${data.chestId}/transaction`, data, {
+    const res = await axios.post(`/chest/${data.chestId}/transaction`, data, {
       headers: { Authorization: `Bearer ${token}` }
     });
     if (data.typeChest === "party") {

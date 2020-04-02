@@ -1,6 +1,7 @@
 import {
   FETCH_ALL_PARTIES_SUCCESS,
   FETCH_PARTY_SUCCESS,
+  CREATE_PARTY_SUCCESS,
   PARTY_TRANSACTION_SUCCESS
 } from "./actions";
 
@@ -15,6 +16,8 @@ export default function(state = initialState, action) {
       return { ...state, allParties: action.payload };
     case FETCH_PARTY_SUCCESS:
       return { ...state, currentParty: action.payload };
+    case CREATE_PARTY_SUCCESS:
+      return { ...state, allParties: [...state.allParties, action.payload] };
     case PARTY_TRANSACTION_SUCCESS:
       return {
         ...state,
