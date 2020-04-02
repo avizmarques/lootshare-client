@@ -35,7 +35,8 @@ export class CharacterDashboard extends Component {
         <button onClick={() => this.toggleForm("loot")}>Add Loot</button>
         {this.state.showForm && (
           <TransactionForm
-            type={this.state.typeForm}
+            typeForm={this.state.typeForm}
+            typeChest={this.state.typeChest}
             chestId={this.props.character.chestId}
           />
         )}

@@ -4,7 +4,7 @@ import { makeTransaction } from "../../store/party/actions";
 
 export class TransactionForm extends Component {
   state = {
-    type: this.props.type,
+    typeForm: this.props.typeForm,
     amount: {
       pp: 0,
       gp: 0,
@@ -13,6 +13,7 @@ export class TransactionForm extends Component {
       cp: 0
     },
     description: "",
+    typeChest: this.props.typeChest,
     chestId: this.props.chestId
   };
 
@@ -44,11 +45,32 @@ export class TransactionForm extends Component {
     });
   };
 
+  characterCheckboxes = characters => {
+    return characters.map((char, i) => (
+      <div key={i}>
+        <input
+          type="radio"
+          name="to"
+          id={char.id}
+          value={char.chestId}
+          onChange={this.onChange}
+        />
+        <label>{char.name}</label>
+      </div>
+    ));
+  };
+
   render = () => {
     return (
       <div>
-        <h2>Add {this.state.type}</h2>
+        <h2>Add {this.state.typeForm}</h2>
         <form onSubmit={this.onSubmit}>
+          {this.state.typeForm === "transfer" && (
+            <div>
+              <div>Send to:</div>
+              {this.characterCheckboxes(this.props.characters)}
+            </div>
+          )}
           <div>
             <div>pp</div>
             <input
