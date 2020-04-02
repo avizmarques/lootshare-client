@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { fetchUserDashboard, createCharacter } from "../../store/user/actions";
 import PartyCard from "./PartyCard";
 import CharacterCard from "./CharacterCard";
-import CreateCharacterForm from "./CreateCharacterForm";
+import CreateCharacterOrPartyForm from "../CreateCharacterOrParty";
 
 const initialState = {
   showForm: false,
@@ -53,7 +53,8 @@ export class UserDashboard extends Component {
         {this.props.characters.map(char => (
           <CharacterCard character={char} />
         ))}
-        <CreateCharacterForm
+        <CreateCharacterOrPartyForm
+          type="character"
           toggleForm={this.toggleForm}
           onSubmit={this.onSubmit}
           onChange={this.onChange}
