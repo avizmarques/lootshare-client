@@ -26,7 +26,7 @@ export class PartyDashboard extends Component {
       return "Loading...";
     }
 
-    const { name, chest, chestId, characters } = this.props.party;
+    const { name, chest, characters } = this.props.party;
 
     return (
       <div>
@@ -37,10 +37,15 @@ export class PartyDashboard extends Component {
           <button onClick={() => this.toggleForm("expense")}>
             Add Expense
           </button>
+          <button onClick={() => this.toggleForm("transfer")}>
+            Make Transfer
+          </button>
           {this.state.showForm && (
             <TransactionForm
-              type={this.state.typeForm}
+              typeForm={this.state.typeForm}
+              typeChest={this.state.typeChest}
               chestId={this.props.party.chestId}
+              characters={this.props.party.characters}
             />
           )}
         </div>
