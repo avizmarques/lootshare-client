@@ -2,14 +2,15 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { login } from "../../store/user/actions";
 import LoginForm from "./LoginForm";
+import "./style.css";
 
 class Login extends Component {
   state = {
     username: "",
-    password: ""
+    password: "",
   };
 
-  onSubmit = async e => {
+  onSubmit = async (e) => {
     try {
       e.preventDefault();
       await this.props.login(this.state);
@@ -18,9 +19,9 @@ class Login extends Component {
     }
   };
 
-  onChange = e => {
+  onChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -34,7 +35,7 @@ class Login extends Component {
   render = () => {
     const { userCreated, token } = this.props.user;
     return (
-      <div>
+      <div className="centerFlex">
         {userCreated && !token && <p>Signup successful, please login.</p>}
         {token ? (
           <p>You are already logged in</p>
@@ -50,7 +51,7 @@ class Login extends Component {
   };
 }
 
-const mapStateToProps = state => ({ user: state.user });
+const mapStateToProps = (state) => ({ user: state.user });
 
 const mapDispatchToProps = { login };
 
